@@ -1,0 +1,24 @@
+.wrapper {
+  position: relative;
+  height: 100vh;
+  overflow: auto;
+  display: flex;
+}
+
+.formWrapper,
+.resultsWrapper {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 80px;
+}
+
+.fieldsWrapper {
+  overflow: auto;
+  display: flex;
+}
+
+.submit {
+  margin-top: 40px;
+}
+
