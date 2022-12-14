@@ -3,12 +3,17 @@ import * as C from "components";
 import * as I from "@ant-design/icons";
 import styles from "./field.module.scss";
 
-const ItemField = ({ onAdd, onRemove, addDisabled, removeDisabled, index }) => {
+const ItemField = ({
+  onRemove,
+  removeDisabled,
+  index,
+  extra,
+}) => {
   return (
-    <C.Space direction="horizontal">
+    <C.Space direction="horizontal" className={styles.wrapper}>
       <C.Input.Group compact className={styles.inputGroup}>
         <C.Field
-          name={`items.${index}.id`}
+          name={`items.${index}.name`}
           className={styles.inputName}
           size="large"
           as={C.Input}
@@ -24,21 +29,20 @@ const ItemField = ({ onAdd, onRemove, addDisabled, removeDisabled, index }) => {
       </C.Input.Group>
 
       <C.Button
-        size="large"
-        icon={<I.PlusOutlined />}
-        onClick={() => onAdd()}
-        disabled={addDisabled}
+        className={styles.removeButton}
+        danger
+        shape="circle"
+        type="text"
+        icon={<I.StopOutlined />}
+        onClick={() => onRemove()}
+        disabled={removeDisabled}
       />
 
       {
-        !removeDisabled &&
-        <C.Button
-          danger
-          shape="circle"
-          type="text"
-          icon={<I.StopOutlined />}
-          onClick={() => onRemove()}
-        />
+        extra &&
+        <>
+          <C.WowPrice priceInCopper={extra.price} /> for {extra.count} of {extra.request.count}
+        </>
       }
     </C.Space>
   );

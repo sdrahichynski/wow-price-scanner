@@ -2,26 +2,17 @@ import * as React from "react";
 import axios from "axios";
 
 const useScan = () => {
-  const [results, setResult] = React.useState([]);
+  const [results, setResult] = React.useState(null);
 
-  const scan = () => {
+  const scan = (values) => {
     axios("http://141.147.14.88/analytics/items/", {
       method: "post",
       data: [
-        {
-          name: "Грубая кожа",
-          count: 1000,
-        },
-
-        {
-          name: "Адамантитовая оружейная цепь",
-          count: 1,
-        },
+        ...values
       ],
     })
-      .then((data) => {
-        console.log(data);
-        setResult(data);
+      .then((response) => {
+        setResult(response.data);
       })
       .catch((error) => console.log(error));
   };
