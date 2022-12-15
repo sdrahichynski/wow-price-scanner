@@ -3,7 +3,7 @@ import * as P from "../pages";
 
 function App() {
   return (
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Routes>
             <Route index element={<P.PriceScanner />} />
         </Routes>
