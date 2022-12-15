@@ -1,14 +1,47 @@
-import React from 'react';
+import React from "react";
 import * as C from "components";
 import styles from "../../price-scanner.module.scss";
 import * as LC from "./components";
 import * as I from "@ant-design/icons";
+import * as LH from "./hooks";
 
-const Form = ({ onSubmit, extra }) => {
+const Form = () => {
+  const [results, scan] = LH.useScan();
+  const [request, setRequest] = React.useState(null);
+
+  const extra = React.useMemo(() => {
+    if (!results || !request) return {};
+
+    const requestMap = request.reduce((requestMap, item) => {
+      requestMap[item.name] = item;
+      return requestMap;
+    }, {});
+
+    return results.itemPrices.reduce((prices, item) => {
+      prices[item.name] = {
+        price: item.fullPriceInCopper,
+        count: item.count,
+
+        request: {
+          ...requestMap[item.name],
+        },
+      };
+      return prices;
+    }, {});
+  }, [results, request]);
+
   return (
     <C.Formik
-      initialValues={{ items: [{ name: "Плотная кожа", count: 100 }, {name: "Руническая ткань", count: 10000}] }}
-      onSubmit={onSubmit}
+      initialValues={{
+        items: [
+          { name: "Плотная кожа", count: 100 },
+          { name: "Руническая ткань", count: 10000 },
+        ],
+      }}
+      onSubmit={(values) => {
+        setRequest(values?.items);
+        scan(values?.items);
+      }}
     >
       {({ values, handleSubmit }) => (
         <C.Form layout="vertical" className={styles.column}>
@@ -16,13 +49,13 @@ const Form = ({ onSubmit, extra }) => {
             {({ push, remove }) => (
               <C.Space direction="vertical" className={styles.columnContent}>
                 {values.items?.map((item, index) => (
-                    <LC.Field
-                      key={index}
-                      index={index}
-                      onRemove={() => remove(1)}
-                      removeDisabled={values.items?.length <= 1}
-                      extra={extra[item.name]}
-                    />
+                  <LC.Field
+                    key={index}
+                    index={index}
+                    onRemove={() => remove(1)}
+                    removeDisabled={values.items?.length <= 1}
+                    extra={extra[item.name]}
+                  />
                 ))}
 
                 <C.Button
@@ -34,9 +67,7 @@ const Form = ({ onSubmit, extra }) => {
             )}
           </C.FieldArray>
 
-          <div
-            className={styles.columnFooter}
-          >
+          <div className={styles.columnFooter}>
             <C.Button
               size="large"
               type="primary"
