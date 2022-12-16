@@ -1,40 +1,19 @@
 import * as React from "react";
 import * as C from "components";
 import * as LC from "./components";
+import { utils, consts } from "./duck";
 import styles from "./price-scanner.module.scss";
 
-const initialTabs = [
-  {label: "Plan A", children: <LC.Form title={"Plan A"}/>, key: "A"},
-];
-
-const newPlanKey = (() => {
-  let counter = 1;
-
-  const plans = ["A", "B", "C", "D", "E"];
-
-  const getPlanKey = (index) => {
-    if (index < plans.length) return plans[index];
-
-    return `${getPlanKey(Math.floor(index / plans.length)- 1)}${getPlanKey(index % plans.length)}`
-  };
-
-  return () => {
-    return getPlanKey(counter++);
-  };
-})();
-
-const MAX_TABS = 7;
-
 const PriceScanner = () => {
-  const [active, setActive] = React.useState(initialTabs[0].key);
-  const [tabs, setTabs] = React.useState(initialTabs);
+  const [active, setActive] = React.useState(consts.INITIAL_TABS[0].key);
+  const [tabs, setTabs] = React.useState(consts.INITIAL_TABS);
 
   const handleAddTab = () => {
-    if (tabs.length >= MAX_TABS) return;
+    if (tabs.length >= consts.MAX_TABS) return;
 
 
     setTabs((prevTabs) => {
-      const newKey = newPlanKey();
+      const newKey = utils.newPlanKey();
       const newTab = {
         label: `Plan ${newKey}`,
         children: <LC.Form title={`Plan ${newKey}`}/>,
