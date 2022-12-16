@@ -43,12 +43,13 @@ $tab-reverse-border-radius: 8px;
       margin-bottom: 0;
     }
 
-    .ant-tabs-nav-wrap {
-      padding-left: 20px;
+    .ant-tabs-nav-list {
+      padding: 0 10px;
     }
 
     .ant-tabs-content-holder {
       padding: 40px;
+      margin: 0 -12px;
       background: rgba(255,255,255,.94);
       border-radius: 12px;
     }
@@ -79,8 +80,8 @@ $tab-reverse-border-radius: 8px;
   flex: 0 1 auto;
   overflow-y: auto;
   display: flex;
-  margin-right: -80px;
-  padding-right: 80px;
+  margin-right: -40px;
+  padding-right: 40px;
   padding-left: 40px;
   margin-left: -40px;
 }
@@ -91,4 +92,17 @@ $tab-reverse-border-radius: 8px;
 
 .itemPrice {
   font-size: 16px;
+}
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    padding: 20px 0 0 0;
+
+    :global {
+      .ant-tabs-content-holder {
+        border-radius: 0;
+        margin: 0;
+      }
+    }
+  }
 }
