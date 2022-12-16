@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/wow-price-scanner/static/css/main.2d380a85.css",
-    "main.js": "/wow-price-scanner/static/js/main.4a79c09b.js",
+    "main.css": "/wow-price-scanner/static/css/main.8755b232.css",
+    "main.js": "/wow-price-scanner/static/js/main.8a3f4934.js",
     "static/media/bg-lk.webp": "/wow-price-scanner/static/media/bg-lk.b50c6c5011e247728612.webp",
     "index.html": "/wow-price-scanner/index.html",
-    "main.2d380a85.css.map": "/wow-price-scanner/static/css/main.2d380a85.css.map",
-    "main.4a79c09b.js.map": "/wow-price-scanner/static/js/main.4a79c09b.js.map"
+    "main.8755b232.css.map": "/wow-price-scanner/static/css/main.8755b232.css.map",
+    "main.8a3f4934.js.map": "/wow-price-scanner/static/js/main.8a3f4934.js.map"
   },
   "entrypoints": [
-    "static/css/main.2d380a85.css",
-    "static/js/main.4a79c09b.js"
+    "static/css/main.8755b232.css",
+    "static/js/main.8a3f4934.js"
   ]
 }
