@@ -1,4 +1,5 @@
 import * as React from "react";
+import { message } from "antd";
 import axios from "axios";
 
 const useScan = () => {
@@ -14,7 +15,13 @@ const useScan = () => {
       .then((response) => {
         setResult(response.data);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        message.open({
+          type: "error",
+          content: error.message,
+        })
+        console.dir(error)
+      });
   };
 
   return [results, scan];

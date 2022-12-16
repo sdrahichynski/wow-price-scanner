@@ -32,7 +32,7 @@ const Form = ({ title }) => {
 
   return (
     <>
-      <C.Typography.Title>{title}</C.Typography.Title>
+      <C.Typography.Title level={2}>{title}</C.Typography.Title>
 
       <C.Formik
         initialValues={{
