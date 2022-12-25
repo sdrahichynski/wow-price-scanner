@@ -1,1 +1,1 @@
-https://sdrahichynski.github.io/wow-price-scanner/
+⚔ https://sdrahichynski.github.io/wow-price-scanner/ ⚔
